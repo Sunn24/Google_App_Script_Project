@@ -11,7 +11,7 @@ function myGoogleform(){
 /////   First time   /////
   var check = form.getItems(FormApp.ItemType.MULTIPLE_CHOICE);
   var multipleChoiceItemsTitle = check.map((item) => item.asMultipleChoiceItem().getTitle()); //change item to MultipleChoiceItem() and get title from its.
-  if(multipleChoiceItemsTitle.length ? false : true){ // ternary operator
+  if(multipleChoiceItemsTitle.length ? false : true){ // ternary operator (true when length equal to 0).
     var name = form.addTextItem();
     name.setTitle('ชื่อ');
     name.setHelpText('หรือนามแฝงอะไรก็ได้');
@@ -31,6 +31,7 @@ function myGoogleform(){
     var newMultipleChoiceItemsTitle = checkagain.map((item) => item.asMultipleChoiceItem().getTitle());
 /////    Append and Delete problems   /////
   if(newMultipleChoiceItemsTitle !=probleminsheet){ //compare the original problems with extended problems
+    //// Have in Sheet but don't append to form yet.
     var difference = probleminsheet.filter(x => !newMultipleChoiceItemsTitle.includes(x)); // difference of list like set.
     for(var i=0; i<difference.length;i++){
       var item = form.addMultipleChoiceItem();
