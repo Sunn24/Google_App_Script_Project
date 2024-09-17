@@ -17,6 +17,10 @@ https://docs.google.com/spreadsheets/d/1cjsme_qg9R8hskDV-ireEaR5xnIwCetusq0rgXeu
 
 https://docs.google.com/spreadsheets/d/1GCaPG_1-49phUsrsGEOZjv31dljlD6LRCnvPGwl6Pm8/template/preview
 
-* ฟอร์ม SMO
+* SMO Google Sheet
 
 https://docs.google.com/spreadsheets/d/1CnQyU8MZCyiXljuRo4zY8-sYZIzswMlbsmnQF4Jx750/template/preview
+
+* Fermat's Factorization
+
+https://docs.google.com/spreadsheets/d/1lInRBG6kQhh8O2SUpPTJ9NZ_3vZ3i2rk4NBUNAxkiGA/template/preview
