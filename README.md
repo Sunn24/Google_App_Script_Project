@@ -11,7 +11,7 @@ https://docs.google.com/spreadsheets/d/1FIUapGxNPEG6yHmHmzRlSbHXz49ZMt2kjlBTaOog
 
 * Create Google Form from Spreadsheets in MAS Camp 2023
 
-https://docs.google.com/spreadsheets/d/1FIUapGxNPEG6yHmHmzRlSbHXz49ZMt2kjlBTaOogrAE/template/preview
+https://docs.google.com/spreadsheets/d/1cjsme_qg9R8hskDV-ireEaR5xnIwCetusq0rgXeuMD8/template/preview
 
 * Major Game 2024 Spreadsheets (Create namelist from google docs and create certificate from google slides)
 
