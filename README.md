@@ -30,3 +30,51 @@
 <a href="https://docs.google.com/spreadsheets/d/1GCaPG_1-49phUsrsGEOZjv31dljlD6LRCnvPGwl6Pm8/view">(view sheet)</a>&emsp;
 <a href="https://docs.google.com/spreadsheets/d/1GCaPG_1-49phUsrsGEOZjv31dljlD6LRCnvPGwl6Pm8/template/preview">(template)</a>&emsp;
 <a href="https://github.com/Sunn24/Google_App_Script_Project/blob/main/Major%20game%202024.gs">(script)</a>
+
+<!-- ```javascript
+function onSelectionChange(){
+// var now = new Date();
+// var deadline = new Date(2023, 7, 8);
+// if (now > deadline){
+//   // Vanish()
+// Hide()
+  // }
+}
+
+function onEdit(e){
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var comment = spreadsheet.getSheetByName("Filter").getRange("B2");
+  comment.setComment("Last modified: " + (new Date())+' by '+Session.getActiveUser());
+  var st = spreadsheet.getSheetByName("Timestamp");
+  var email = Session.getActiveUser().getEmail();
+  st.appendRow([new Date(),email,e.range.getSheet().getName(),e.range.getA1Notation()]);
+
+}
+
+function Vanish() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  spreadsheet.insertSheet().setName("Sheet1");
+  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var out = new Array()
+  for (var i=0 ; i<sheets.length ; i++) out.push(sheets[i].getName());
+  out.forEach(function(value,index){
+    if (sheets[index].getName()!=="Sheet1"){
+    spreadsheet.deleteSheet(spreadsheet.getSheetByName(sheets[index].getName()));
+    }})};
+
+function Hide() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var out = new Array()
+  for (var i=0 ; i<sheets.length ; i++) out.push(sheets[i].getName());
+  out.forEach(function(value,index){
+    if (sheets[index].getName()!=="Filter"){
+    spreadsheet.getSheetByName(sheets[index].getName()).hideSheet();
+    }})};
+
+// function TimestampEdit(){
+//   var selectsheet = SpreadsheetApp.getActiveSpreadsheet.getSheetbyName("Timestamp");
+//   selectsheet.appendRow();
+
+// }
+``` -->
