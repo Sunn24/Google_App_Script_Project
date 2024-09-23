@@ -1,5 +1,5 @@
 function onEdit(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("สถานะการขอยืมกุญแจห้องสนว");
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("สถานะการขอยืมกุญแจ");
   var sheet2 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("สถานะการขอยืมพัสดุ");
   // var email = Session.getActiveUser().getEmail();
   var thisRow = e.range.getRow();
@@ -11,7 +11,7 @@ function onEdit(e) {
   if (!(sheet.getRange(lastRow,2).isBlank())&&sheet.getRange(lastRow,7).isBlank()){
   sheet.getRange(lastRow,7).insertCheckboxes();
   }
-  // if (thisCol===6 && e.range.getValue()===true && e.range.getSheet().getName()==="การขอยืมกุญแจห้องสนว (Hide)"){
+  // if (thisCol===6 && e.range.getValue()===true && e.range.getSheet().getName()==="การขอยืมกุญแจ"){
   // sheet.hideRows(thisRow,1);
   // }
   if (!(sheet2.getRange(lastRow2,2).isBlank())&&sheet2.getRange(lastRow2,6).isBlank()){
