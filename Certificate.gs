@@ -10,47 +10,46 @@ var sheetname = new Array()
 allsheet.forEach(function(value){
   sheetname.push(value.getName())
 })
-// Logger.log(spreadsheet.getSheetByName('TEMPLATE')!=null)
 
-// function onEdit(){
-//   text=sheet.getRange(1,1).getValue();
-//   // text='แบบฟอร์มลงสมัครแข่งขันกีฬา Major Games 2023 (MA)';
-//   Logger.log(text.slice(45,47));
-//   // Vanish()
-//   // var email = Session.getActiveUser().getEmail();
-//   // var me = Session.getEffectiveUser();
-//   // if(!fixsheet.includes(e.range.getSheet().getName()) && e.range.getColumn()===1 && 2<e.range.getRow()<7){
-//   //   if(e.range.isChecked()){
-//   //     sheet.getRange(e.range.getRow(),2).setValue(email);
-//   //   }
-//   //   else{
-//   //     sheet.getRange(e.range.getRow(),2).clearContent();
-//   //   }
-//   //   var protectcheck = sheet.getRange(3,1,4,1).getValues()
-//   //   var emailprotection = sheet.getRange(3,2,4,1).getValues()
-//   //   var array = new Array
-//   //   protectcheck.forEach(function(value){array.push(value[0])});
-//   //   var checker = arr => arr.every(v => v === true);
-//   //   var protection = sheet.protect()
-//   //   if(checker(array)===true){
-//   //     protection.addEditor(me);
-//   //     protection.removeEditors(protection.getEditors());
-//   //     emailprotection.forEach(function(value,i){protection.addEditor(emailprotection[i][0])})
-//   //     protection.setDomainEdit(false);
-//   //   }
-//   //   else{
-//   //     protection.remove()
-//   //   }
-//   // }
-// }
+// Google Sheet form edit 
+function onEdit(){
+  text=sheet.getRange(1,1).getValue();
+  text='แบบฟอร์มลงสมัครแข่งขันกีฬา Major Games 2023 (MA)';
+  // Vanish()
+  var email = Session.getActiveUser().getEmail();
+  var me = Session.getEffectiveUser();
+  if(!fixsheet.includes(e.range.getSheet().getName()) && e.range.getColumn()===1 && 2<e.range.getRow()<7){
+    if(e.range.isChecked()){
+      sheet.getRange(e.range.getRow(),2).setValue(email);
+    }
+    else{
+      sheet.getRange(e.range.getRow(),2).clearContent();
+    }
+    var protectcheck = sheet.getRange(3,1,4,1).getValues()
+    var emailprotection = sheet.getRange(3,2,4,1).getValues()
+    var array = new Array
+    protectcheck.forEach(function(value){array.push(value[0])});
+    var checker = arr => arr.every(v => v === true);
+    var protection = sheet.protect()
+    if(checker(array)===true){
+      protection.addEditor(me);
+      protection.removeEditors(protection.getEditors());
+      emailprotection.forEach(function(value,i){protection.addEditor(emailprotection[i][0])})
+      protection.setDomainEdit(false);
+    }
+    else{
+      protection.remove()
+    }
+  }
+}
 
-// function Vanish() {
-//   sheetname.forEach(function(value){
-//     if (!requiredsheet.includes(value)){
-//     spreadsheet.deleteSheet(spreadsheet.getSheetByName(value));
-//     }
-//   })  
-// };
+function Vanish() {
+  sheetname.forEach(function(value){
+    if (!requiredsheet.includes(value)){
+    spreadsheet.deleteSheet(spreadsheet.getSheetByName(value));
+    }
+  })  
+};
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -62,6 +61,7 @@ function onOpen() {
     .addToUi();
 }
 
+//// New sheet button
 function newSheet(){
   do {
     var code = getSingleInput("Enter your major (CH) or click Cancel"); // below function
@@ -76,6 +76,7 @@ function newSheet(){
   }
 }
 
+//// Ui window
 function getSingleInput(promptText){
   var ui = SpreadsheetApp.getUi();
   var title = "New Sheet"; // Header text of UI
@@ -96,20 +97,22 @@ function getSingleInput(promptText){
   return returnedResult;
 }
 
-const slideTemplateId = '1IMDIxo7FWUTI70IsZY-dsH7G9TjNMMENYbWK0yyh_BQ';
-const folderTemplateId = '1dFwmOPu1CThjDjJrLMq1cK_gVKbdSl6n'; // Create an empty folder in Google Drive
+//// Certificate button
+const slideTemplateId = '1IMDIxo7FWUTI70IsZY-dsH7G9TjNMMENYbWK0yyh_BQ'; // Load the Google Slide template file
+const folderTemplateId = '1dFwmOPu1CThjDjJrLMq1cK_gVKbdSl6n'; // Any folder in Google Drive 
 
 function createCertificates() {
-  // Load the Google Slide template file
+  //// Loading folder for collect certificate
   const createNewFolderId = DriveApp.getFolderById(folderTemplateId).createFolder('เกียรติบัตรรางวัล').setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW).getId();
-
   // const createSportFolderId = DriveApp.getFolderById(folderTemplateId).createFolder('เกียรติบัตรเข้าร่วม').setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW).getId();
   // const createStaffFolderId = DriveApp.getFolderById(folderTemplateId).createFolder('เกียรติบัตรstaff').setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW).getId();
 
   const certificatesheet = spreadsheet.getSheetByName('CERTIFICATES');
+  //// called table (include header)
   const values = certificatesheet.getRange(2,1,certificatesheet.getLastRow()-1,certificatesheet.getLastColumn()).getValues();
   // const sport = certificatesheet.getRange(3,3).getValue();
-// identify the headers
+  
+  //// identify header
   const headers = values[0];
   // const typeIndex = headers.indexOf('ประเภท');
   const nameIndex = headers.indexOf('ชื่อ');
@@ -118,12 +121,13 @@ function createCertificates() {
   const awardIndex = headers.indexOf('รางวัล');
   const sportIndex = headers.indexOf('กีฬา');
   const pdfurlIndex = headers.indexOf('LINK');
+  
   const folderTemplate = DriveApp.getFolderById(createNewFolderId);
   const slidetemplate = DriveApp.getFileById(slideTemplateId);
-// Make a copy of the Slide template
+  //// Make a copy of the slide template
   const emptySlideId = slidetemplate.makeCopy(folderTemplate).setName('certificate').getId();  
   const namelist = new Array;
-// Iterate through each row to capture individual details
+  //// Iterate through each row to capture individual details
   for (let i = 1; i < values.length; i++) {
     const rowData = values[i];
     const name = rowData[nameIndex];
@@ -131,18 +135,19 @@ function createCertificates() {
     // const major = rowData[majorIndex];
     const award = rowData[awardIndex];
     const sport = rowData[sportIndex];
-// Open slide that is copy from template
-    const emptySlide = SlidesApp.openById(emptySlideId).getSlides()[0].duplicate(); 
+    //// Open copied slide
+    const emptySlide = SlidesApp.openById(emptySlideId).getSlides()[0].duplicate();
+    //// Create certificate by text replacement
     emptySlide.replaceAllText('Surname-Lastname', name+"  "+lastname);
     // emptySlide.replaceAllText('Major', major);
     emptySlide.replaceAllText('Award', award);
     emptySlide.replaceAllText('Sport', sport);
-    emptySlide.move(i+1);
+    emptySlide.move(i+1); //// move this page to backward
     namelist.push([name,lastname,sport])
     SpreadsheetApp.flush();
   }
-  SlidesApp.openById(emptySlideId).getSlides()[0].remove();
-// convert to PDF
+  SlidesApp.openById(emptySlideId).getSlides()[0].remove(); // end of iteration
+  //// convert to PDF
   const slides = SlidesApp.openById(emptySlideId).getSlides();
   let holder = SlidesApp.create('holder');
   const holderID = holder.getId();
